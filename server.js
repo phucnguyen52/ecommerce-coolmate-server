@@ -6,7 +6,7 @@ require("dotenv").config();
 
 const corsOptions = {
   origin: true,
-  // credentials: true,
+  credentials: true,
 };
 
 const { connectToDB } = require("./config/mysql.js");
