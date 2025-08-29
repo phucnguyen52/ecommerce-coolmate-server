@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 require("dotenv").config();
 
 const corsOptions = {
-  origin: ["*"],
+  origin: true,
   // credentials: true,
 };
 
