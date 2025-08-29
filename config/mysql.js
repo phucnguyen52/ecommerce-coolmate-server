@@ -1,35 +1,36 @@
-const {Sequelize} = require("sequelize");
-
+const { Sequelize } = require("sequelize");
 
 const sequelize = new Sequelize(
-    process.env.MYSQL_DATABASE, 
-    process.env.MYSQL_USER,
-    process.env.MYSQL_PASSWORD, {
+  process.env.MYSQL_DATABASE,
+  process.env.MYSQL_USER,
+  process.env.MYSQL_PASSWORD,
+  {
     host: process.env.MYSQL_HOST,
+    port: process.env.MYSQL_PORT,
     dialect: "mysql",
-    timezone: '+07:00',
+    timezone: "+07:00",
     define: {
-        timestamps: false,
-        sync: {
-            force: false
-        }
+      timestamps: false,
+      sync: {
+        force: false,
+      },
     },
     dialectOptions: {
-        charset: 'utf8mb4',
+      charset: "utf8mb4",
     },
-    logging: false
-});
+    logging: false,
+  }
+);
 
-sequelize.sync({alter : true});
-
+// sequelize.sync({ alter: true });
 
 const connectToDB = async () => {
-    try {
-        await sequelize.authenticate();
-        console.log("Kết nối thành công DATABASE");
-    } catch (error) {
-        console.log(error);
-    }
-}
+  try {
+    await sequelize.authenticate();
+    console.log("Kết nối thành công DATABASE");
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-module.exports = {sequelize, connectToDB};
+module.exports = { sequelize, connectToDB };
