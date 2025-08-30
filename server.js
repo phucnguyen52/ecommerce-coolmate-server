@@ -5,11 +5,7 @@ const bodyParser = require("body-parser");
 require("dotenv").config();
 
 const corsOptions = {
-  origin: [
-    "https://ecommerce-coolmate-deloy.vercel.app",
-    "https://ecommerce-coolmate-admin-deloy.vercel.app",
-    "http://localhost:3000", // để test local
-  ],
+  origin: true,
   credentials: true,
 };
 
