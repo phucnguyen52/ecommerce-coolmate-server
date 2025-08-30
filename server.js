@@ -27,6 +27,16 @@ app.use("/api/customer", customerRouter);
 app.use("/api/admin", adminRouter);
 app.use("/upload", uploadRouter);
 
-server.listen(process.env.PORT, async () => {
-  await connectToDB();
-});
+const startServer = async () => {
+  try {
+    await connectToDB();
+    server.listen(process.env.PORT, () => {
+      console.log(`🚀 Server running on port ${process.env.PORT}`);
+    });
+  } catch (err) {
+    console.error("❌ Failed to start server:", err);
+    process.exit(1);
+  }
+};
+
+startServer();
