@@ -11,9 +11,6 @@ const sequelize = new Sequelize(
     timezone: "+07:00",
     define: {
       timestamps: false,
-      sync: {
-        force: false,
-      },
     },
     dialectOptions: {
       charset: "utf8mb4",
@@ -22,14 +19,17 @@ const sequelize = new Sequelize(
   }
 );
 
-await sequelize.sync({ force: true });
-
 const connectToDB = async () => {
   try {
     await sequelize.authenticate();
-    console.log("Kết nối thành công DATABASE");
+    console.log("✅ Kết nối thành công DATABASE");
+
+    // sync sau khi connect
+    await sequelize.sync({ force: true }); // khi muốn xóa hết bảng
+    // hoặc: await sequelize.sync({ alter: true }); // khi chỉ muốn update cấu trúc bảng
+    console.log("✅ Sync models thành công");
   } catch (error) {
-    console.log(error);
+    console.log("❌ Lỗi kết nối DB:", error);
   }
 };
 
