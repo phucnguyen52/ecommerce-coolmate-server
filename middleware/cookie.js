@@ -5,8 +5,8 @@ const tokenCookie = async (user, statusCode, res) => {
 
   const option = {
     expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
-    httpOnly: false,
-    sameSite: "strict",
+    httpOnly: true,
+    sameSite: "none",
     secure: true,
   };
 
