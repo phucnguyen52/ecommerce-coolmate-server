@@ -22,7 +22,7 @@ const sequelize = new Sequelize(
   }
 );
 
-sequelize.sync({ alter: true });
+await sequelize.sync({ force: true });
 
 const connectToDB = async () => {
   try {
