@@ -3,18 +3,15 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 require("dotenv").config();
-
+const app = express();
 const corsOptions = {
-  origin: [
-    "https://ecommerce-coolmate-deloy.vercel.app",
-    "https://ecommerce-coolmate-admin-deloy.vercel.app",
-  ],
+  origin: true,
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   // allowedHeaders: ["Content-Type", "Authorization"],
 };
 const { connectToDB } = require("./config/mysql.js");
-const { app, server } = require("./socket/socket");
+const { server } = require("./socket/socket");
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions));
 app.use(cookieParser());
