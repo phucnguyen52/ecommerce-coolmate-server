@@ -60,7 +60,7 @@ const topSellingProduct = async () => {
                     SUM(od.quantity) as quantity
                 FROM \`order\` as o
                 JOIN orderdetail as od ON o.id = od.OrderId
-                JOIN productdetail as pd ON od.ProductDetailId = pd.id
+                JOIN productDetail as pd ON od.ProductDetailId = pd.id
                 JOIN product as p ON pd.ProductId = p.id
                 where month(o.orderDate) = month(NOW()) and o.statusOrder = 'Đã giao hàng' and YEAR(o.orderDate) = YEAR(NOW())
                 GROUP BY p.nameProduct, p.id, p.image
@@ -132,7 +132,7 @@ const getOrderPending = async (req, res) => {
       FROM \`order\` o
       JOIN \`user\` u         ON u.id = o.UserId        
       JOIN orderdetail od     ON od.OrderId = o.id
-      JOIN productdetail pd   ON pd.id = od.ProductDetailId
+      JOIN productDetail pd   ON pd.id = od.ProductDetailId
       JOIN product p          ON p.id = pd.ProductId
       WHERE DAY(o.orderDate) = :day
         AND MONTH(o.orderDate) = :month

@@ -266,7 +266,7 @@ const getAllOrderForUser = async (id, type) => {
   FROM \`user\` as u
   JOIN \`order\` as o ON o.UserId = u.id
   JOIN orderdetail as od ON od.OrderId = o.id
-  JOIN productdetail as pd on pd.id = od.ProductDetailId
+  JOIN productDetail as pd on pd.id = od.ProductDetailId
   JOIN product as p on p.id = pd.ProductId
   WHERE ${conditions.join(" AND ")}
   GROUP BY o.id;
