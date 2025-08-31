@@ -202,7 +202,7 @@ const searchProduct = async (search) => {
   value = value.toLowerCase().replace(/\s+/g, " ");
 
   const sql = `SELECT p.*, COUNT(*) OVER() AS totalRecords 
-                FROM Product p
+                FROM product p
                 WHERE LOWER(p.nameProduct) like '%${value}%';`;
 
   const product = await sequelize.query(sql, {
