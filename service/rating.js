@@ -1,21 +1,19 @@
 const { Ratings } = require("../model/rating");
-const {ShoppingCart} = require("../model/shoppingCart");
+const { ShoppingCart } = require("../model/shoppingCart");
 
-const { Sequelize, Op } = require('sequelize');
+const { Sequelize, Op } = require("sequelize");
 const { sequelize } = require("../config/mysql");
 
+const createRating = async (data) => {
+  try {
+    await Ratings.create(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-const createRating  = async (data) => {
-    try {
-        await Ratings.create(data);
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-
-const getRatingProduct  = async(id) => {
-    const sql = `WITH ReviewSummary AS (
+const getRatingProduct = async (id) => {
+  const sql = `WITH ReviewSummary AS (
                     SELECT 
                         u.fullname AS userName,
                         u.picture AS userImage,
@@ -28,7 +26,7 @@ const getRatingProduct  = async(id) => {
                     FROM 
                         product p
                     JOIN 
-                        productdetail pd ON p.id = pd.ProductId
+                        productDetail pd ON p.id = pd.ProductId
                     JOIN 
                         orderdetail od ON pd.id = od.ProductDetailId
                     JOIN 
@@ -56,11 +54,12 @@ const getRatingProduct  = async(id) => {
                     ) AS reviews
                 FROM 
                     ReviewSummary;`;
-    
-    const rating = await sequelize.query(sql, {type : Sequelize.QueryTypes.SELECT});
 
-    return rating;
-    
-}
+  const rating = await sequelize.query(sql, {
+    type: Sequelize.QueryTypes.SELECT,
+  });
 
-module.exports = {createRating, getRatingProduct}
+  return rating;
+};
+
+module.exports = { createRating, getRatingProduct };

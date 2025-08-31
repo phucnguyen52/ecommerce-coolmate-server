@@ -11,7 +11,7 @@ const reportCategoty = async (data) => {
                 JOIN 
                     product as p ON p.CategoryId = c.id
                 JOIN 
-                    productdetail as pd ON pd.ProductId = p.id
+                    productDetail as pd ON pd.ProductId = p.id
                 JOIN
                     orderdetail as od ON od.ProductDetailId = pd.id
                 JOIN

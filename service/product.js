@@ -64,7 +64,7 @@ const getAllProduct = async (data) => {
                 JOIN 
                     category c ON p.CategoryId = c.id
                 JOIN
-	                productdetail pd ON pd.ProductId = p.id
+	                  productDetail pd ON pd.ProductId = p.id
                 WHERE 
                     p.price between ${min} and ${max} ${where}
                 GROUP BY
@@ -101,7 +101,7 @@ const getProduct = async (id) => {
                 FROM 
                     product as p
                 JOIN 
-                    productdetail as pd ON p.id = pd.ProductId
+                    productDetail as pd ON p.id = pd.ProductId
                 WHERE
                     p.id = ${id}
                 GROUP BY 

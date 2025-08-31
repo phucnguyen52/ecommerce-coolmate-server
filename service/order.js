@@ -111,7 +111,7 @@ const getOrder = async (id) => {
                 JOIN 
                     orderdetail as od ON o.id = od.OrderId
                 JOIN
-                    productdetail as pd ON pd.id = od.ProductDetailId
+                    productDetail as pd ON pd.id = od.ProductDetailId
                 JOIN
                     product as p ON p.id = pd.ProductId
                 WHERE
@@ -169,7 +169,7 @@ const getAllOrderForAdmin = async (data) => {
         JOIN 
             orderdetail as od ON o.id = od.OrderId
         JOIN
-            productdetail as pd ON pd.id = od.ProductDetailId
+            productDetail as pd ON pd.id = od.ProductDetailId
         JOIN
             product as p ON p.id = pd.ProductId
         WHERE 

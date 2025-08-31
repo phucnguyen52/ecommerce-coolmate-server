@@ -58,7 +58,7 @@ const getStore = async (id) => {
                 JOIN 
                     storedetail as sd ON s.id = sd.StoreId
                 JOIN
-                    productdetail as pd ON pd.id = sd.ProductDetailId
+                    productDetail as pd ON pd.id = sd.ProductDetailId
                 JOIN
                     product as p ON p.id = pd.ProductId
                 WHERE
@@ -95,7 +95,7 @@ const getAllStore = async (data) => {
                     JOIN 
                         storedetail AS sd ON s.id = sd.StoreId
                     JOIN 
-                        productdetail AS pd ON pd.id = sd.ProductDetailId
+                        productDetail AS pd ON pd.id = sd.ProductDetailId
                     JOIN 
                         product AS pr ON pr.id = pd.ProductId
                     WHERE 
@@ -158,7 +158,7 @@ const getAllStoreDetail = async (data) => {
                     JOIN 
                         store s ON sd.StoreId = s.id
                     JOIN 
-                        productdetail pd ON sd.ProductDetailId = pd.id
+                        productDetail pd ON sd.ProductDetailId = pd.id
                     JOIN 
                         product p ON pd.ProductId = p.id
                 )
@@ -172,7 +172,7 @@ const getAllStoreDetail = async (data) => {
                 FROM 
                     product p
                 JOIN 
-                    productdetail pd ON p.id = pd.ProductId 
+                    productDetail pd ON p.id = pd.ProductId 
                 LEFT JOIN (
                     SELECT 
                         product_id,
