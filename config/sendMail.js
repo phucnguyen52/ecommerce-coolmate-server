@@ -7,7 +7,7 @@ const sendMail = async (options) => {
     console.log("sendMail options:", options);
 
     const { data, error } = await resend.emails.send({
-      from: process.env.SMPT_MAIL,
+      from: "Authentication email <noreply@bookingroom.id.vn>",
       to: options.email,
       subject: options.subject,
       text: options.message,
