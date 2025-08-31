@@ -56,7 +56,7 @@ const getStore = async (id) => {
                 FROM 
                     store as s
                 JOIN 
-                    storedetail as sd ON s.id = sd.StoreId
+                    storeDetail as sd ON s.id = sd.StoreId
                 JOIN
                     productDetail as pd ON pd.id = sd.ProductDetailId
                 JOIN
@@ -93,7 +93,7 @@ const getAllStore = async (data) => {
                     FROM 
                         store AS s
                     JOIN 
-                        storedetail AS sd ON s.id = sd.StoreId
+                        storeDetail AS sd ON s.id = sd.StoreId
                     JOIN 
                         productDetail AS pd ON pd.id = sd.ProductDetailId
                     JOIN 
@@ -154,7 +154,7 @@ const getAllStoreDetail = async (data) => {
                         sd.price AS latest_price,
                         ROW_NUMBER() OVER (PARTITION BY p.id ORDER BY s.storeDate DESC) AS rn
                     FROM 
-                        storedetail sd
+                        storeDetail sd
                     JOIN 
                         store s ON sd.StoreId = s.id
                     JOIN 
