@@ -13,14 +13,10 @@ const corsOptions = {
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   // allowedHeaders: ["Content-Type", "Authorization"],
 };
-
-app.use(cors(corsOptions));
-app.options("*", cors(corsOptions));
-
 const { connectToDB } = require("./config/mysql.js");
 const { app, server } = require("./socket/socket");
-
 app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
