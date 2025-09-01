@@ -382,7 +382,7 @@ const getAllByUser = async (data, userId) => {
               {
                 id: {
                   [Op.in]: sequelize.literal(
-                    `(select voucherId from vouchercategory
+                    `(select voucherId from voucherCategory
                                                    where CategoryId in (select CategoryId 
                                                       from product
                                                       where id in (${productId}))
