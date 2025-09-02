@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const http = require("http");
-const cookieParser = require("cookie-parser");
+// const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 require("dotenv").config();
 const app = express();
@@ -9,12 +9,14 @@ const server = http.createServer(app);
 const corsOptions = {
   origin: true,
   credentials: true,
+  allowedHeaders: ["Content-Type", "Authorization"],
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
 };
 
 const { connectToDB } = require("./config/mysql.js");
 
 app.use(cors(corsOptions));
-app.use(cookieParser());
+// app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

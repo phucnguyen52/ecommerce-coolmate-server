@@ -1,23 +1,17 @@
 const jwt = require("jsonwebtoken");
 
 const tokenCookie = async (user, statusCode, res) => {
-  const token = jwt.sign({ user }, process.env.JWT);
+  // Tạo token JWT
+  const token = jwt.sign({ user }, process.env.JWT, {
+    expiresIn: "90d", // 90 ngày
+  });
 
-  const option = {
-    expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
-    httpOnly: true,
-    sameSite: "none",
-    secure: true,
-  };
-
-  res.cookie("token", token, option);
-
-  const role = user.role;
+  // Trả token trong JSON để client lưu và gửi qua header Authorization
   res.status(statusCode).json({
     success: true,
     message: "Đăng nhập thành công",
-    token,
-    role,
+    token, // Client sẽ dùng: Authorization: Bearer <token>
+    role: user.role,
   });
 };
 
