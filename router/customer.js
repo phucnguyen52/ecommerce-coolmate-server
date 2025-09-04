@@ -52,7 +52,7 @@ customerRouter.post("/active", activeUser);
 customerRouter.post("/login", loginUser);
 customerRouter.get("/", authentication, getUser);
 customerRouter.put("/", authentication, putUser);
-customerRouter.post("/oauth/google", oauthController);
+customerRouter.get("/oauth/google", oauthController);
 
 //address
 customerRouter.post("/address", authentication, createAddress);
