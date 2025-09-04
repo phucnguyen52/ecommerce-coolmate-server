@@ -146,7 +146,7 @@ const oauth = async (code) => {
 
     // 4. Tạo JWT duy nhất (7 ngày, tuỳ bạn)
     const token = jwt.sign(
-      { id: user.id, email: user.email, role: user.role },
+      { user: { id: user.id, email: user.email, role: user.role } },
       process.env.JWT,
       { expiresIn: "90d" }
     );
