@@ -58,12 +58,22 @@ const loginUser = async (req, res) => {
 };
 
 const oauthController = async (req, res) => {
-  const { code } = req.query;
-  const result = await User.oauth(code);
-  const urlRedirect = `${process.env.CLIENT_REDIRECT_CALLBACK}?token=${result.token}&isNewUser=${result.isNewUser}`;
-  return res.redirect(urlRedirect);
-};
+  try {
+    const { code } = req.query;
 
+    const result = await oauth(code); // gọi sang service
+    console.log("result", result);
+    console.log(
+      "process.env.CLIENT_REDIRECT_CALLBACK",
+      process.env.CLIENT_REDIRECT_CALLBACK
+    );
+    const urlRedirect = `${process.env.CLIENT_REDIRECT_CALLBACK}?token=${result.token}&isNewUser=${result.isNewUser}`;
+    return res.redirect(urlRedirect);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ success: false, message: "OAuth failed" });
+  }
+};
 const postUser = async (req, res) => {
   await User.postUser(req.body);
   res.status(200).json({
