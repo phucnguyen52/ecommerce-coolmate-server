@@ -61,12 +61,8 @@ const oauthController = async (req, res) => {
   try {
     const { code } = req.query;
 
-    const result = await oauth(code); // gọi sang service
+    const result = await User.oauth(code);
     console.log("result", result);
-    console.log(
-      "process.env.CLIENT_REDIRECT_CALLBACK",
-      process.env.CLIENT_REDIRECT_CALLBACK
-    );
     const urlRedirect = `${process.env.CLIENT_REDIRECT_CALLBACK}?token=${result.token}&isNewUser=${result.isNewUser}`;
     return res.redirect(urlRedirect);
   } catch (error) {
