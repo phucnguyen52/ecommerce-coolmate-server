@@ -58,11 +58,10 @@ const loginUser = async (req, res) => {
 };
 
 const oauthController = async (req, res) => {
-  console.log(req.url);
-  res.status(200).json({
-    success: true,
-    message: "Thêm nhân viên thành công",
-  });
+  const { code } = req.query;
+  const result = await User.oauth(code);
+  const urlRedirect = `${process.env.CLIENT_REDIRECT_CALLBACK}?token=${result.token}&isNewUser=${result.isNewUser}`;
+  return res.redirect(urlRedirect);
 };
 
 const postUser = async (req, res) => {
