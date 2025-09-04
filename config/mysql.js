@@ -27,7 +27,6 @@ const connectToDB = async () => {
     // sync sau khi connect
     await sequelize.sync({ alter: true }); // khi muốn xóa hết bảng
     // hoặc: await sequelize.sync({ alter: true }); // khi chỉ muốn update cấu trúc bảng
-    console.log("✅ Sync models thành công");
   } catch (error) {
     console.log("❌ Lỗi kết nối DB:", error);
   }

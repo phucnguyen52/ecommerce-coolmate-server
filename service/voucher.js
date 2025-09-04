@@ -454,7 +454,6 @@ const getAll = async (data) => {
 };
 
 const deleteById = async (id) => {
-  console.log(id);
   try {
     const voucher = await Voucher.findByPk(id);
     if (voucher.status == "draft") {
