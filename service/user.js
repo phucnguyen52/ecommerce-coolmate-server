@@ -147,7 +147,7 @@ const oauth = async (code) => {
     // 4. Tạo JWT duy nhất (7 ngày, tuỳ bạn)
     const token = jwt.sign(
       { id: user.id, email: user.email, role: user.role },
-      process.env.JWT_SECRET,
+      process.env.JWT,
       { expiresIn: "90d" }
     );
 
@@ -155,10 +155,6 @@ const oauth = async (code) => {
     return { ...user, token, isNewUser };
   } catch (error) {
     console.error(error);
-    return res.status(500).json({
-      success: false,
-      message: "Lỗi OAuth Google",
-    });
   }
 };
 const getUser = async (id) => {
